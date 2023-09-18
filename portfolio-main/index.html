@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <title>김희언 포트폴리오</title>
+    <meta content="images/test.png" property="og:image"><!--카톡 링크이미지-->
+    <meta content="김희언_포트폴리오" property="og:title"><!--카톡제목-->
+    <meta content="김희언 포트폴리오입니다" property="og:title"><!--카톡설명-->
+    <meta content="https://kheon27.github.io/project1/" property="og:url">
+    <meta name="keywords" content="연습용작품">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/lightbox.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/lightbox.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script>
+      $(document).ready(function(){
+        AOS.init();
+
+var a = 1;
+$('.btn_all').click(function () {
+if (a == 1) {
+$('.box').show();
+$(this).addClass('on');
+a = 2
+} else {
+$('.box').hide();
+$(this).removeClass('on');
+a = 1;
+}; //if.end
+}); //$('.btn_all').click
+
+//모바일 메뉴 펼치기
+const aco = $('.m_menu li a');
+aco.on('click',function(){
+const item = $(this);
+let speed = 200;
+aco.parent().find('.sub').stop().slideUp(speed);
+if(item.hasClass('active')){
+
+item.find('.sub').stop().slideUp(speed);	
+item.removeClass('active');
+}else{
+item.parent().find('.sub').stop().slideDown();
+$('.box').hide();
+$('.btn_all').removeClass('on');
+aco.removeClass('active');
+item.addClass('active');
+
+}
+});
+
+$('.pro_btn a').each(function(){
+      $(this).click(function(){
+        var a = $(this); //=> 현재 클릭한 a 태그만 찾기 위해
+        var aHref = $(this).attr('href');
+        $('.pop').hide(); //팝업 오픈 버튼을 누르면 나머지 싹 닫기 위해
+        $('.pro_btn a').removeClass('select_btn');
+        $(aHref).show();
+        a.addClass('select_btn');
+
+        $('.btn').click(function(){
+          a.removeClass('select_btn');
+          $(aHref).hide();
+        });//$('.btn').click
+
+      }); //$(this).click
+      }); //$('.modal_select a').each
+      $('.close').click(function(){
+        $('.pop').hide();
+        });//$('.btn').click
+
+
+        var menu = $(".menu > li");
+	var content = $("section");
+	
+	menu.click(function(){
+		/*preventDefault 는 a 태그 처럼 클릭 이벤트 외에 
+별도의 브라우저 행동을 막기 위해 사용됩니다.*/
+		event.preventDefault();
+		
+		//사용자가 클릭한 li
+		var tg = $(this);
+		//순서값을 찾는 함수 index()
+		var idx = tg.index();
+		//선택한 li와 순서가 같은 content 를 찾음 eq()
+		var section = content.eq(idx);
+		//선택된 영역의 top 의 좌표값을 저장
+		//.offset()은 선택한 요소의 좌표를 가져오거나 특정 좌표로 이동하게 합니다.
+		var tt = section.offset().top;
+
+		//스크롤이 tt의 값에 맞게 움직이게
+		$("html,body").stop().animate({scrollTop:tt});
+		});//menu.click() 끝
+		
+		// 윈도우에서 scroll() 스크롤이 작동될 때 일어날 일.
+		$(window).scroll(function(){
+		//.scrollTop()은 선택한 요소의 스크롤바 수직 위치를 반환하거나 스크롤바 수직 위치를 정합니다.
+		var location = $(window).scrollTop() // + 10;
+		
+		content.each(function() {
+			//반복문(each)
+      var tg = $(this);
+			var idx = tg.index();
+			
+			if(tg.offset().top <= location){  //active 위치가 안맞으면 location + 위치값 을 추가하면 됨
+				menu.removeClass("active");
+				menu.eq(idx).addClass("active");
+				}
+
+    });//each() 끝
+		
+			
+			});//scroll() 끝    
+
+     });
+     
+    </script>
+</head>
+<body>
+ <header>
+<div class="inner">
+     <div class="logo">
+        <a href="index.html"><img src="images/logo.Png"></a> 
+     </div>
+  <nav>
+      <ul class="menu">
+          <li><a href="#header_section">Home</a></li>
+          <li><a href="#about_section">About</a></li>
+          <li><a href="#web_section">Web</a></li>
+          <li><a href="#etc_section">Etc</a></li>
+          <li><a href="#contact_footer">Contact</a></li>
+      </ul>
+      <div class="btn_all">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="box">
+        <ul class="m_menu">
+          <li><a href="#header_section">Home</a></li>
+          <li><a href="#about_section">About</a></li>
+          <li><a href="#web_section">Web</a></li>
+          <li><a href="#etc_section">Etc</a></li>
+          <li><a href="#contact_footer">Contact</a></li>
+        </ul>
+      </div>
+  </nav> 
+  <div class="clear"></div> 
+</div> 
+ </header>   
+ <section class="sec1" id="header_section">
+     <div class="inner">
+<div class="port">
+  <p><span>IT'S </span>PORTFOLIO</p> 
+</div>
+<div class="clear"></div>
+</div>
+<div class="intro_br1">
+</div>
+<div class="water-group">
+  <div class="water water1" style="background-image: url('images/test.png')"></div>
+  <div class="water water2" style="background-image: url('images/test2.png')"></div>
+  <div class="water water3" style="background-image: url('images/test2.png')"></div>
+  <div class="water water4" style="background-image: url('images/test.png')"></div>
+</div>
+<div class="intro_br2"></div>
+<div class="inner">
+  <div class="port_text">
+    <h1>WE ALWAYS HAVE<br>
+      WE WILL FIND A WAY</h1>
+      <p>우리는 답을 찾을 것이다. 늘 그랬듯이</p>
+  </div>
+</div>
+ </section>
+ <section class="sec2" id="about_section">
+<div class="inner">
+  <div class="intro_sub"data-aos="fade-right"
+  data-aos-offset="400"
+  data-aos-easing="ease-in-sine">
+  <div class="design">
+    <h1>멈추지 않는<br>
+    디자이너<br>
+    <span>김희언입니다</span></h1>
+    <div class="pic2"><img src="images/profile.png"></div>
+    <div class="clear"></div>
+    <div class="sub_design3">
+      <p>
+        “우리는 답을 찾을 것이다. 늘 그랬듯이”
+        어려움을 직면 했을 때 멈추지 않고 나아가다 
+        보면 길이 보인다  라고 생각합니다.
+      </p>
+      </div> 
+      <div class="sub_design4">
+        <p>
+          빠르게 변화하는 디자인의 세계에서도
+          멈추지 않고 길을 나아가는 디자이너가
+          되고 싶습니다.
+        </p>
+        </div> 
+  </div>
+  <div class="design_1">
+    <div class="sub_design1">
+    <h3>저는 이런 능력이 있습니다.</h3>
+    <p><span>웹 디자인</span><br>
+    HTML, CSS, Javascript를 활용하여
+    자체 웹사이트 제작이 가능합니다.</p>
+  </div>
+  </div>
+  <div class="design_2">
+   <div class="pic">
+        <img src="images/profile.png">
+  </div>
+  <div class="sub_design2">
+    <p><span>그래픽 디자인</span><br>
+      PhotoShop, Illustrator, XD를 활용하
+      여 웹에 필요한 그래픽 디자인이 가능합니다.
+    </p>
+  </div>
+  </div>
+</div>
+<div class="intro_sub_br"></div>
+</div>
+ </section>
+ <section class="sec3" id="web_section">
+<div class="inner">
+  <div class="web_title">
+    <h2>WEB</h2>
+    </div>
+    <div class="project">
+      <div class="slider-for">
+        <div>
+          <div class="pro_com"><img src="images/lutie.png"></div>
+          <div class="pro_info holly">
+            <img src="images/lutie_ico.png">
+            <h1>LUTIE <br>DROPS</h1>
+            <table>
+              <tr>
+                <td class="ky">제작기간</td>
+                <td>2022.07 ~ 2023.01</td>
+              </tr>
+              <tr>
+                <td class="ky">키워드</td>
+                <td>#모험, #다양한, #현대적인</td>
+              </tr>
+              <tr>
+                <td class="ky">기획의도</td>
+                <td class="na">여러가지 캐릭터와 레벨로 구성되어 있는
+                   2D 캐릭터 기반의 NFT 게임</td>
+              </tr>
+            </table>
+                <div class="pro_btn">
+                  <a href="#pop_up4" class="modal2"><div class="concept">컨셉서 보기</div></a>
+                 
+                </div>
+          </div>
+        </div>
+        <div>
+          <div class="pro_com"><img src="images/papercorea.png"></div>
+          <div class="pro_info holly">
+            <img src="images/paper_ico.png">
+            <h1>PAPER <br>COREA</h1>
+            <table>
+              <tr>
+                <td class="ky">제작기간</td>
+                <td>2023.09.11 ~ 09.15</td>
+              </tr>
+              <tr>
+                <td class="ky">키워드</td>
+                <td>#깔끔한, #모던함, #차분한</td>
+              </tr>
+              <tr>
+                <td class="ky">기획의도</td>
+                <td class="na">페이퍼코리아의 웹사이트를 현대적인 디자인의
+                   반응형 웹사이트로 리뉴얼</td>
+              </tr>
+            </table>
+                <div class="pro_btn">
+                  <a href="#pop_up0" class="modal2"><div class="concept">컨셉서 보기</div></a>
+                  <a href="https://kheon27.github.io/papercorea/" target="_blank"><div class="site">사이트 바로가기</div></a>
+                </div>
+          </div>
+        </div>
+        <div>
+          <div class="pro_com"><img src="images/big_freli.png"></div>
+          <div class="pro_info freli">
+            <img src="images/fr_logo.png">
+            <h1>펠리시티</h1>
+            <table>
+              <tr>
+                <td class="ky">제작기간</td>
+                <td>2022.03.31 ~ 04.02</td>
+              </tr>
+              <tr>
+                <td class="ky">키워드</td>
+                <td>#여성스러운, #Nature, #맑은</td>
+              </tr>
+              <tr>
+                <td class="ky">기획의도</td>
+                <td class="na">카페24를 활용한 여성스럽고 Nature한 분위기의 자체제작 화장품 홈페이지</td>
+              </tr>
+            </table>
+                <div class="pro_btn">
+                  <a href="#pop_up1" class="modal1"><div class="concept">컨셉서 보기</div></a>
+                  <a href="https://frelicity.cafe24.com/" target="_blank"><div class="site">사이트 바로가기</div></a>
+                </div>
+          </div>
+        </div>
+        <div>
+          <div class="pro_com"><img src="images/big_ship.png"></div>
+          <div class="pro_info ship">
+            <img src="images/ship_logo.png">
+            <h1>남성해운</h1>
+            <table>
+              <tr>
+                <td class="ky">제작기간</td>
+                <td>2022.03.07 ~ 03.11</td>
+              </tr>
+              <tr>
+                <td class="ky">키워드</td>
+                <td>#BLUE, #깔끔한, #아이덴티티</td>
+              </tr>
+              <tr>
+                <td class="ky">기획의도</td>
+                <td class="na">남성해운 업체의 로고색을 포인트로 하여 깔끔한
+                디자인의 반응형 웹페이지로 리뉴얼</td>
+              </tr>
+            </table>
+                <div class="pro_btn">
+                  <a href="#pop_up3" class="modal3"><div class="concept">컨셉서 보기</div></a>
+                  <a href=" https://kheon27.github.io/namsungshipping/" target="_blank"><div class="site">사이트 바로가기</div></a>
+                </div>
+          </div>
+        </div>
+        <div>
+          <div class="pro_com"><img src="images/big_hollys1.png"></div>
+          <div class="pro_info holly">
+            <img src="images/hollys_logo.png">
+            <h1>HOLLYS <br>COFFEE</h1>
+            <table>
+              <tr>
+                <td class="ky">제작기간</td>
+                <td>2022.02.22 ~ 03.05</td>
+              </tr>
+              <tr>
+                <td class="ky">키워드</td>
+                <td>#RED, #모던함, #현대적인</td>
+              </tr>
+              <tr>
+                <td class="ky">기획의도</td>
+                <td class="na">기존 할리스 커피의 웹사이트를 원페이지 스크롤
+                  형식인 반응형 웹사이트로 리뉴얼</td>
+              </tr>
+            </table>
+                <div class="pro_btn">
+                  <a href="#pop_up2" class="modal2"><div class="concept">컨셉서 보기</div></a>
+                  <a href="https://kheon27.github.io/hollyscoffee/" target="_blank"><div class="site">사이트 바로가기</div></a>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-nav">
+        <div><img src="images/smallpaper.jpg">
+          <div class="mini_info hollys">
+            <h4>PAPER<br>COREA</h4>
+          <p>현대적인 디자인의<br>
+          반응형 웹페이지</P>
+        </div>
+        </div>
+        <div><img src="images/mini_freli.jpg">
+          <div class="mini_info">
+            <h4>펠리시티</h4>
+          <p>카페24를 활용한<br>
+          자체제작 사이트</P>
+        </div>
+        </div>
+        <div><img src="images/mini_ship.jpg">
+          <div class="mini_info">
+        <h4>남성해운</h4>
+      <p>깔끔한 디자인의<br>
+      반응형 웹페이지</P>
+    </div>
+      </div>
+        <div><img src="images/mini_hollys.jpg">
+          <div class="mini_info hollys">
+            <h4>HOLLYS<br>COFFEE</h4>
+          <p>원페이지 스크롤의<br>
+          반응형 웹페이지</P>
+        </div>
+        </div>
+        <div><img src="images/mini_lutie.png">
+          <div class="mini_info hollys">
+            <h4>LUTIE<br>DROPS</h4>
+          <p>2D 캐릭터 기반의<br>
+          NFT 게임</P>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </section>
+ <section class="sec4" id="etc_section">
+  <div class="inner">
+  <div class="etc_title">
+    <h2>ETC</h2>
+  </div>
+  <div class="etc_pro">
+    <div class="etc_slide">
+    <div class="single-item">
+      <div>
+        <p>엔플라넷 신진작가 배너</p>  
+        <img src="images/np_bn.png">
+      </div>
+      <div>
+        <p>이디야 커피 캠페인 배너</p>  
+        <img src="images/banner5.jpg"></div>
+      <div>
+      <p>재난지원금 신청안내 배너</p>  
+      <img src="images/banner1.jpg">
+    </div>
+      <div>
+        <p>동물병원 홍보 배너</p>
+        <img src="images/banner2.jpg">
+      </div>
+      <div>
+        <p>가정의 달 혜택안내 배너</p>
+        <img src="images/banner4.jpg">
+      </div>
+    </div>
+  </div>
+    <div class="con1">
+      <div class="photo">
+        <a href="images/logo_end.jpg" data-lightbox="photos" data-title="건강주스 로고 디자인">
+         <p>로고</p> 
+         <img src="images/lo_mockup1.jpg" class="img-thumbnail" alt="castle">
+       </a>
+       </div>
+        <div class="photo">
+         <a href="images/cardnews.jpg" data-lightbox="photos1" data-title="엔플라넷 이벤트, 쿨톤 립 추천 카드뉴스">
+          <p>카드뉴스</p> 
+          <img src="images/card_su.png" class="img-thumbnail" alt="castle">
+        </a>
+        </div>
+        <div class="photo">
+          <a href="images/promotion_new.png" data-lightbox="photos1" data-title="아웃도어 프로모션">
+           <p>프로모션</p> 
+           <img src="images/banner7.jpg" class="img-thumbnail" alt="castle">
+         </a>
+         </div>
+         <div class="photo">
+          <a href="images/le_end.jpg" data-lightbox="photos" data-title="북촌한옥마을 리플렛">
+           <p>리플렛</p> 
+           <img src="images/le_mockup.jpg" class="img-thumbnail" alt="castle">
+         </a>
+         </div>
+      <div class="photo">
+        <a href="images/postcard_end.jpg" data-lightbox="photos" data-title="캐릭터, 라인아트 엽서">
+         <p>엽서</p> 
+         <img src="images/tw_mockup.jpg" class="img-thumbnail" alt="castle">
+       </a>
+       </div>
+       <div class="photo">
+        <a href="images/poly_end.jpg" data-lightbox="photos" data-title="폴리곤 아트">
+         <p>아트</p> 
+         <img src="images/poly.jpg" class="img-thumbnail" alt="castle">
+       </a>
+       </div>
+       <div class="photo">
+        <a href="images/page_end.jpg" data-lightbox="photos" data-title="에멀젼 상세페이지">
+         <p>상세페이지</p> 
+         <img src="images/page1.jpg" class="img-thumbnail" alt="castle">
+       </a>
+       </div>
+       <div class="photo">
+        <a href="images/ppt_design.png" data-lightbox="photos" data-title="플랫폼 소개, 관공서 스타일 PPT">
+         <p>PPT 템플릿</p> 
+         <img src="images/ppt_title.png" class="img-thumbnail" alt="castle">
+       </a>
+       </div>
+      </div>
+  </div>
+  </div>
+ </section>
+ <section>
+ <footer>
+<div class="inner">
+  <div class="contact" id="contact_footer">
+  <div class="contact1">
+    <h2>CONTACT</h2>
+    <img src="images/wave.png">
+    <p class="ph"><a href="tel:010-4073-0186">010-4073-0186</a></p>
+    <p class="em"><a href="mailto:mycute21151@naver.com">mycute21151@naver.com</a></p>
+    <p class="copy">COPYRIGHT ⓒ 2022 김희언 포트폴리오. ALL RIGHTS RESERVED.
+      본 사이트는 개인 포트폴리오 사이트로 제작되어 상업적 목적이 아닙니다.
+      사용된 일부 이미지 및 폰트 등은 별도의 출처가 있음을 밝혀 드립니다.
+      해상도 1920*1080에 최적화 되었습니다.</p>
+  </div>
+  <div class="contact2">
+    <h1><span class="en">CONTACT</span><br>
+    ME</h1>
+    <P>Thank you</P>
+    <img src="images/wave.png">
+    <div class="clear"></div>
+  </div>
+</div>
+</div>
+ </footer>
+</section>
+
+
+ <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+ <script type="text/javascript" src="js/slick.min.js"></script>
+ <script type="text/javascript">
+ 	$(function(){
+    $('.slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: '.slider-nav'
+});
+$('.slider-nav').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  asNavFor: '.slider-for',
+  dots: false,
+  centerMode: true,
+  focusOnSelect: true,
+  responsive: [
+    { breakpoint: 685, // 화면의 넓이가 600px 이상일 때 
+      settings: {  dots: true }}
+   ]
+});
+
+$('.single-item').slick({
+  adaptiveHeight: true
+});
+  		})
+  		
+</script>
+<div id="pop_up0" class="pop">
+  <div class="inner">
+  <div class="close"></div>
+  <div class="img">
+   <img src="images/paper_concept.png">
+    </div>
+   </div>
+  </div>
+<div id="pop_up1" class="pop">
+  <div class="inner">
+  <div class="close"></div>
+  <div class="img">
+   <img src="images/frelicity_concept.jpg">
+    </div>
+   </div>
+  </div>
+  <div id="pop_up2" class="pop">
+    <div class="inner">
+    <div class="close"></div>
+    <div class="img">
+     <img src="images/hollys_concept.jpg">
+      </div>
+     </div>
+    </div>
+    <div id="pop_up3" class="pop">
+      <div class="inner">
+      <div class="close"></div>
+      <div class="img">
+       <img src="images/ship_concept.jpg">
+        </div>
+       </div>
+      </div>
+      <div id="pop_up4" class="pop">
+        <div class="inner">
+        <div class="close"></div>
+        <div class="img">
+         <img src="images/lutie_concept.png">
+          </div>
+         </div>
+        </div>
+</body>
+</html>
